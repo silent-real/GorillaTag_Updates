@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Fusion;
-using Fusion.CodeGen;
 using Photon.Pun;
 using UnityEngine;
 
@@ -14,44 +13,10 @@ public class RandomTimedSeedManager : NetworkComponent, ITickSystemTick
 	private struct RandomTimedSeedManagerData : INetworkStruct
 	{
 		[FieldOffset(0)]
-		[FixedBufferProperty(typeof(int), typeof(UnityValueSurrogate_0040ElementReaderWriterInt32), 0, order = -2147483647)]
-		[WeaverGenerated]
-		[SerializeField]
-		private FixedStorage_00401 _seed;
+		public int seed;
 
 		[FieldOffset(4)]
-		[FixedBufferProperty(typeof(float), typeof(UnityValueSurrogate_0040ElementReaderWriterSingle), 0, order = -2147483647)]
-		[WeaverGenerated]
-		[SerializeField]
-		private FixedStorage_00401 _currentSyncTime;
-
-		[Networked]
-		[NetworkedWeaved(0, 1)]
-		public unsafe int seed
-		{
-			readonly get
-			{
-				return *(int*)Native.ReferenceToPointer(ref _seed);
-			}
-			set
-			{
-				*(int*)Native.ReferenceToPointer(ref _seed) = value;
-			}
-		}
-
-		[Networked]
-		[NetworkedWeaved(1, 1)]
-		public unsafe float currentSyncTime
-		{
-			readonly get
-			{
-				return *(float*)Native.ReferenceToPointer(ref _currentSyncTime);
-			}
-			set
-			{
-				*(float*)Native.ReferenceToPointer(ref _currentSyncTime) = value;
-			}
-		}
+		public float currentSyncTime;
 
 		public RandomTimedSeedManagerData(int seed, float currentSyncTime)
 		{

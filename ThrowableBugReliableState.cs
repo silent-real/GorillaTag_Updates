@@ -1,7 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
 using Fusion;
-using Fusion.CodeGen;
 using GorillaExtensions;
 using Photon.Pun;
 using UnityEngine;
@@ -14,24 +13,7 @@ public class ThrowableBugReliableState : NetworkComponent, IRequestableOwnership
 	public struct BugData : INetworkStruct
 	{
 		[FieldOffset(0)]
-		[FixedBufferProperty(typeof(Vector3), typeof(UnityValueSurrogate_0040ElementReaderWriterVector3), 0, order = -2147483647)]
-		[WeaverGenerated]
-		[SerializeField]
-		private FixedStorage_00403 _tDirection;
-
-		[Networked]
-		[NetworkedWeaved(0, 3)]
-		public unsafe Vector3 tDirection
-		{
-			readonly get
-			{
-				return *(Vector3*)Native.ReferenceToPointer(ref _tDirection);
-			}
-			set
-			{
-				*(Vector3*)Native.ReferenceToPointer(ref _tDirection) = value;
-			}
-		}
+		public Vector3 tDirection;
 
 		public BugData(Vector3 dir)
 		{
