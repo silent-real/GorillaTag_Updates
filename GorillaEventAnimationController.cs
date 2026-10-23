@@ -58,13 +58,13 @@ public class GorillaEventAnimationController : MonoBehaviour
 
 	public Animation controllingAnimation;
 
-	public bool playAnimation;
+	private bool playAnimation;
 
 	private float lateStart;
 
 	private float animationTime;
 
-	public int animationClipIndex;
+	private int animationClipIndex;
 
 	public List<GTAnimationClip> clips;
 
@@ -130,6 +130,7 @@ public class GorillaEventAnimationController : MonoBehaviour
 		{
 			currentClip = clips[animationClipIndex].clip;
 			currentClip.legacy = true;
+			currentClip.wrapMode = WrapMode.Once;
 			if (autoIncrementClipOnLateStart)
 			{
 				while (lateStart > 0f && currentClip.length < lateStart && animationClipIndex < clips.Count - 1)
@@ -137,6 +138,7 @@ public class GorillaEventAnimationController : MonoBehaviour
 					lateStart -= currentClip.length;
 					currentClip = clips[++animationClipIndex].clip;
 					currentClip.legacy = true;
+					currentClip.wrapMode = WrapMode.Once;
 				}
 			}
 			controllingAnimation.Play(currentClip.name);
@@ -156,6 +158,7 @@ public class GorillaEventAnimationController : MonoBehaviour
 				{
 					currentClip = clips[++animationClipIndex].clip;
 					currentClip.legacy = true;
+					currentClip.wrapMode = WrapMode.Once;
 				}
 				controllingAnimation.Play(currentClip.name);
 				animationState = controllingAnimation[currentClip.name];
@@ -260,5 +263,24 @@ public class GorillaEventAnimationController : MonoBehaviour
 				controllingAnimation.Stop();
 			}
 		}
+	}
+
+	public bool BuildValidationCheck()
+	{
+		bool result = true;
+		for (int i = 0; i < clips.Count; i++)
+		{
+			if (clips[i].clip == null)
+			{
+				Debug.LogError($"Clip on {base.name} at index {i} is null.");
+				result = false;
+			}
+			else if (clips[i].clip.wrapMode != WrapMode.Once)
+			{
+				Debug.LogError("Clip " + clips[i].clip.name + "'s Wrap Mode is not set to 'Once'. This will likely break the animation flow.");
+				result = false;
+			}
+		}
+		return result;
 	}
 }
