@@ -6,6 +6,7 @@ using GorillaLocomotion.Gameplay;
 using GT_CustomMapSupportRuntime;
 using UnityEngine;
 
+[AddComponentMenu("GorillaTag/Virtual Stump/Custom Maps Gorilla Zipline")]
 public class CustomMapsGorillaZipline : GorillaZipline
 {
 	public bool GenerateZipline(CustomMapSupport.BezierSpline splineRef)

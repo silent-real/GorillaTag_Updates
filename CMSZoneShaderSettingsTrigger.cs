@@ -5,6 +5,7 @@ using GorillaTagScripts.VirtualStumpCustomMaps;
 using GT_CustomMapSupportRuntime;
 using UnityEngine;
 
+[AddComponentMenu("GorillaTag/Virtual Stump/CMS Zone Shader Settings Trigger")]
 public class CMSZoneShaderSettingsTrigger : MonoBehaviour
 {
 	public GameObject shaderSettingsObject;

@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using AOT;
-using Fusion;
 using GorillaExtensions;
 using GorillaGameModes;
 using GorillaNetworking;
@@ -25,20 +24,7 @@ public sealed class CustomGameMode : GorillaGameManager
 	{
 	}
 
-	public override void OnSerializeRead(object obj)
-	{
-	}
-
 	public override void OnSerializeWrite(PhotonStream stream, PhotonMessageInfo info)
-	{
-	}
-
-	public override object OnSerializeWrite()
-	{
-		return null;
-	}
-
-	public override void AddFusionDataBehaviour(NetworkObject obj)
 	{
 	}
 
