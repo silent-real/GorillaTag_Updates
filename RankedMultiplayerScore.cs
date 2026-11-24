@@ -94,8 +94,6 @@ public class RankedMultiplayerScore : MonoBehaviourTick
 
 	private float PerSecondTimer = -1f;
 
-	private bool WasInfectedInitially;
-
 	private GorillaTagCompetitiveManager CompetitiveManager;
 
 	protected Dictionary<int, PlayerScoreInRound> AllPlayerInRoundScores = new Dictionary<int, PlayerScoreInRound>();
@@ -264,7 +262,6 @@ public class RankedMultiplayerScore : MonoBehaviourTick
 		}
 		PerSecondTimer = -1f;
 		ReportScore();
-		WasInfectedInitially = false;
 		IsLateJoiner = false;
 	}
 
@@ -336,10 +333,6 @@ public class RankedMultiplayerScore : MonoBehaviourTick
 		if (!lateJoin && CompetitiveManager != null)
 		{
 			initInfected = CompetitiveManager.IsInfected(player);
-			if (player.ActorNumber == NetworkSystem.Instance.LocalPlayerID)
-			{
-				WasInfectedInitially = true;
-			}
 		}
 		if (player == NetworkSystem.Instance.LocalPlayer)
 		{

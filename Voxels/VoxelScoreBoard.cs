@@ -62,8 +62,9 @@ public class VoxelScoreBoard : NetworkComponent
 
 	public int columnOffset = -4;
 
-	private new void Start()
+	protected override void Start()
 	{
+		base.Start();
 		_materialNames = new string[materialSet.Materials.Length];
 		for (int i = 0; i < _materialNames.Length; i++)
 		{
@@ -191,8 +192,9 @@ public class VoxelScoreBoard : NetworkComponent
 		}
 	}
 
-	private new void OnEnable()
+	internal override void OnEnable()
 	{
+		base.OnEnable();
 		VoxelEvents.OnResourcesMinedAuthority += OnResourcesMined;
 		RoomSystem.JoinedRoomEvent += new Action(OnJoinedRoom);
 		RoomSystem.LeftRoomEvent += new Action(OnLeftRoom);
@@ -200,8 +202,9 @@ public class VoxelScoreBoard : NetworkComponent
 		RoomSystem.PlayerLeftEvent += new Action<NetPlayer>(OnPlayerLeftRoom);
 	}
 
-	private new void OnDisable()
+	internal override void OnDisable()
 	{
+		base.OnDisable();
 		VoxelEvents.OnResourcesMinedAuthority -= OnResourcesMined;
 		RoomSystem.JoinedRoomEvent -= new Action(OnJoinedRoom);
 		RoomSystem.LeftRoomEvent -= new Action(OnLeftRoom);
